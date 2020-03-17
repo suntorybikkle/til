@@ -1,0 +1,3 @@
+#
+
+[複数のgithubアカウントに対して一つのPCでコミットする方法](https://github.com/youkinjoh/TrainingWebSocket/wiki/%E5%90%8C%E4%B8%80%E7%AB%AF%E6%9C%AB%E3%81%A7%E3%80%81%E8%A4%87%E6%95%B0%E3%81%AEGitHub%E3%82%A2%E3%82%AB%E3%82%A6%E3%83%B3%E3%83%88%E3%82%92%E4%BD%BF%E3%81%84%E5%88%86%E3%81%91%E3%82%8B%E6%96%B9%E6%B3%95)
