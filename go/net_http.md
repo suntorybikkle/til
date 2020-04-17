@@ -38,4 +38,19 @@ func main() {
 	server.ListenAndServe()
 ```
 
+## ハンドラのチェイン
+
+```go
+func log(h http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWrite, r *http.Request) {
+		name := runtime.FuncForPC(reflect.ValueOf(h).Pointer()).Name()
+		fmt.Println("Hndler function called - " + name)
+		h(w, r)
+	}
+}
+```
+
+- 引数HandlerFuncで返り血もHandlerFuncである
+- `http.HandleFunc("/hoge", log(hoge))` のように利用することで、ログ出力を挟み込んでいる
+- 上記のような使い方をすることで、ロジックの分離を行う
 
