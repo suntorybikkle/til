@@ -68,4 +68,13 @@ Emacs-Lispでは名前空間が一つしかない点に注意
 	(add-to-list 'auto-mode-alist '("\\.ctp\\'" . php-mode)) ; 読み込みに成功したときのみ評価される
 ```
 
+## 関数定義
+
+```el
+(defun square (a)
+  (* a a))
+
+(square 3) ; 9
+```
+
 

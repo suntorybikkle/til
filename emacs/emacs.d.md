@@ -31,4 +31,6 @@
 - `expand-file-name` filename &optional directory
   - filenameを絶対パスで表示する
   - directoryがあれば、filenameをその後ろに展開する
-
+- `provide`
+  - 自作Lispファイルを読み込むには`load-path`に配置するだけでは`require`で取得できない
+  - `provide 'hoge`のように定義することで、`hoge.el`を`require 'hoge`可能になる
