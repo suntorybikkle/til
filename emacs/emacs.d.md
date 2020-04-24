@@ -34,3 +34,19 @@
 - `provide`
   - 自作Lispファイルを読み込むには`load-path`に配置するだけでは`require`で取得できない
   - `provide 'hoge`のように定義することで、`hoge.el`を`require 'hoge`可能になる
+- `package-installed-p` package
+  - packageがインストール済みであれば`t`他は`nil`を返す
+
+## テクニック
+
+- Emacsのバージョン毎にパッケージ管理のディレクトリを分ける
+  - `package-user-dir`はElpaのインストール先、読み込み先を指す
+
+```el
+(let ((versioned-package-dir
+       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
+                                user-emacs-directory))) ; Emacsのバージョンを指定したディレクトリ名
+				(setq package-user-dir versioned-package-dir))
+```
+
+
