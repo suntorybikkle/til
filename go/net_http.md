@@ -72,3 +72,53 @@ func log(h http.HandlerFunc) http.HandlerFunc {
 - フォーム
   - クライアントのHTMLフォームを利用したPOSTリクエストを受け取る
   - ParseFormなどを利用してリクエストを解析する
+
+## クッキー
+
+Goでは以下のような構造体でCookieを表現する
+
+```go
+type Cookie struct {
+     Name       string
+     Value      string
+     Path       string
+     Domain     string
+     Expires    time.Time
+     RawExpires string
+     MaxAge     int
+     Secure     bool
+     HttpOnly   bool
+     Raw        string
+     Unparsed   []string
+}
+```
+
+- クッキーの種類は基本的にはセッションクッキーと永続性クッキーの２種類
+- クッキーの有効期限は`Expires`か`MaxAge`で指定される
+- 有効期限が指定されていないクッキーがセッションクッキーとなる
+
+クッキーの設定
+
+```go
+c := http.Cookie{
+  Name:  "hoge_cookie"
+  Value: "Hello world!"
+}
+http.SetCookie(w, &c)
+```
+
+- クッキーを参照渡ししている点に注意
+- 別の設定方法に`w.Heder().Set("Set-Cookie", c.String())`という書き方もある
+
+クッキーの読み取り
+
+```go
+c, err := r.Cookie("hoge_cookie")
+if err != nil {
+   fmt.Fprintln(w, "Cannot get hoge_cookie")
+}
+```
+
+- `Cookie`メソッドはクッキーが取得できなかった時、エラーを返す
+- 複数のクッキーを取得する場合、`Cookies`メソッドを使う
+- ヘッダーを直接読む場合、`r.Header["Cookie"]`と書くことで取得できる
