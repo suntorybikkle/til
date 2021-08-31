@@ -19,15 +19,10 @@ bash の設定ファイルとして、`~/.bash_profile` や `~/.bashrc` など�
   - `~/.profile` と `~/.bashrc` を読み込むだけ
 
 ```bash:~/.bash_profile
-if [ -f ~/.bashrc ]; then
-	source ~/.bashrc
-fi
-if [ -f ~/.profile ]; then
-	source ~/.profile
-fi
+# git bash の書き方？
+test -f ~/.profile && . ~/.profile
+test -f ~/.profile && . ~/.bashrc
 ```
-
-暫定
 
 - `~/.profile`
   - シェルに依存しないもの (環境変数など) を記述
